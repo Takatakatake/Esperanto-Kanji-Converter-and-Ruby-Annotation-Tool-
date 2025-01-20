@@ -57,15 +57,12 @@ def replace_esperanto_chars(text, letter_dictionary):
         text = text.replace(esperanto_char, x_char)
     return text
 
-##
-import json
-import re
 # JSONファイルを読み込む
-with open("./files_needed_to_get_replacements_list_json_format/ABC_replacements_list_for_2char_Korean.json", "r", encoding="utf-8") as f:
-    imported_data_ABC_replacements_list_for_2char = json.load(f)
+with open("./files_needed_to_get_replacements_list_json_format/replacements_list_for_2char_Korean.json", "r", encoding="utf-8") as f:
+    imported_data_replacements_list_for_2char = json.load(f)
 
 # プレースホルダーを用いた文字列置換関数
-def enhanced_safe_replace_func_expanded_for_2char_roots(text, replacements, imported_data_ABC_replacements_list_for_2char):
+def enhanced_safe_replace_func_expanded_for_2char_roots(text, replacements, imported_data_replacements_list_for_2char):
     valid_replacements = {}
     for old, new, placeholder in replacements:
         if old in text:
@@ -73,12 +70,12 @@ def enhanced_safe_replace_func_expanded_for_2char_roots(text, replacements, impo
             valid_replacements[placeholder] = new
 # ここで、2文字の語根の置換を実施することとした(202412の変更)。  &%
     valid_replacements_ABC = {}
-    for old, new, placeholder in imported_data_ABC_replacements_list_for_2char:
+    for old, new, placeholder in imported_data_replacements_list_for_2char:
         if old in text:
             text = text.replace(old, placeholder)
             valid_replacements_ABC[placeholder] = new
     valid_replacements_ABC_2 = {}
-    for old, new, placeholder in imported_data_ABC_replacements_list_for_2char:
+    for old, new, placeholder in imported_data_replacements_list_for_2char:
         if old in text:
             place_holder_second="!"+placeholder+"!"##2回目のplace_holderは少し変更を加えたほうが良いはず。
             text = text.replace(old, place_holder_second)
@@ -128,7 +125,7 @@ def create_replacements(text, placeholders):
     return replacements_list_for_intact_parts
 
 # プレースホルダーファイルから読み込む
-placeholders = load_placeholders('./files_needed_to_get_replacements_list_json_format/No.1000_9999.txt')
+placeholders = load_placeholders('./files_needed_to_get_replacements_list_json_format/placeholders_&%1854&%-&%9834&%_文字列置換skip用.txt')
 
 
 
@@ -157,7 +154,7 @@ with st.form(key='profile_form'):
         sorted_replacements_list_for_intact_parts = sorted(replacements_list_for_intact_parts, key=lambda x: len(x[0]), reverse=True)
         for original, place_holder_ in sorted_replacements_list_for_intact_parts:
             replaced_text = replaced_text.replace(original, place_holder_)
-        text3 = enhanced_safe_replace_func_expanded_for_2char_roots(replaced_text, replacements_final_list_2, imported_data_ABC_replacements_list_for_2char)# ここが一番メインの置換　⇑では"%%"で囲まれた部分をプレースホルダーに置き換える作業を、⇓では、プレースホルダーに置き換えられた、"%%"で囲まれた部分を元の文字列に戻す作業を行っている。
+        text3 = enhanced_safe_replace_func_expanded_for_2char_roots(replaced_text, replacements_final_list_2, imported_data_replacements_list_for_2char)# ここが一番メインの置換　⇑では"%%"で囲まれた部分をプレースホルダーに置き換える作業を、⇓では、プレースホルダーに置き換えられた、"%%"で囲まれた部分を元の文字列に戻す作業を行っている。
         for original, place_holder_ in sorted_replacements_list_for_intact_parts:
             text3 = text3.replace(place_holder_, original.replace("%%",""))
         # ⇓出力文字形式の変換
