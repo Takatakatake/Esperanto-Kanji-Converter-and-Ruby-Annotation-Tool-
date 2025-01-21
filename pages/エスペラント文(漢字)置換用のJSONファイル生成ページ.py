@@ -695,7 +695,7 @@ for kk in range(len(pre_replacements_list_for_localized_string_2)):
 combined_data = {}
 
 # キー名はお好みに変更可
-combined_data["全域替换用替换用のリスト(列表)型配列(replacements_final_list)"] = replacements_final_list
+combined_data["全域替换用のリスト(列表)型配列(replacements_final_list)"] = replacements_final_list
 combined_data["二文字词根替换用のリスト(列表)型配列(replacements_list_for_2char)"] = replacements_list_for_2char
 combined_data["局部文字替换用のリスト(列表)型配列(replacements_list_for_localized_string)"] = replacements_list_for_localized_string
 
