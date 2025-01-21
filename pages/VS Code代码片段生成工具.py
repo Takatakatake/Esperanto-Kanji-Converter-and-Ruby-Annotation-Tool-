@@ -4,7 +4,7 @@ import os
 from io import BytesIO
 
 # 定数の定義
-SAMPLE_CSV = "./files_needed_to_get_replacements_text/20240316世界语词根列表＿包含2个字符的世界语词根＿生成AI_upload用.csv"
+SAMPLE_CSV = "./files_needed_to_get_replacements_list_json_format/20240316世界语词根列表＿包含2个字符的世界语词根＿生成AI_upload用.csv"
 SAMPLE_CSV_PATH = os.path.abspath(SAMPLE_CSV)
 
 def download_sample_csv():
