@@ -657,19 +657,19 @@ replacements_list_for_suffix_2char_roots=[]
 for i in range(len(suffix_2char_roots)):
     replacements_list_for_suffix_2char_roots.append(["$"+suffix_2char_roots[i],"$"+safe_replace(suffix_2char_roots[i],temporary_replacements_list_final),"$"+imported_placeholders_for_2char[i]])
     replacements_list_for_suffix_2char_roots.append(["$"+suffix_2char_roots[i].upper(),"$"+safe_replace(suffix_2char_roots[i],temporary_replacements_list_final).upper(),"$"+imported_placeholders_for_2char[i][:-1]+'up$'])
-    replacements_list_for_suffix_2char_roots.append(["$"+suffix_2char_roots[i].capitalize(),"$"+safe_replace(suffix_2char_roots[i],temporary_replacements_list_final).capitalize(),"$"+imported_placeholders_for_2char[i][:-1]+'cap$'])
+    replacements_list_for_suffix_2char_roots.append(["$"+suffix_2char_roots[i].capitalize(),"$"+capitalize_ruby_and_rt(safe_replace(suffix_2char_roots[i],temporary_replacements_list_final)),"$"+imported_placeholders_for_2char[i][:-1]+'cap$'])
 
 replacements_list_for_prefix_2char_roots=[]
 for i in range(len(prefix_2char_roots)):
     replacements_list_for_prefix_2char_roots.append([prefix_2char_roots[i]+"$",safe_replace(prefix_2char_roots[i],temporary_replacements_list_final)+"$",imported_placeholders_for_2char[i+1000]+"$"])
     replacements_list_for_prefix_2char_roots.append([prefix_2char_roots[i].upper()+"$",safe_replace(prefix_2char_roots[i],temporary_replacements_list_final).upper()+"$",imported_placeholders_for_2char[i+1000][:-1]+'up$'+"$"])
-    replacements_list_for_prefix_2char_roots.append([prefix_2char_roots[i].capitalize()+"$",safe_replace(prefix_2char_roots[i],temporary_replacements_list_final).capitalize()+"$",imported_placeholders_for_2char[i+1000][:-1]+'cap$'+"$"])
+    replacements_list_for_prefix_2char_roots.append([prefix_2char_roots[i].capitalize()+"$",capitalize_ruby_and_rt(safe_replace(prefix_2char_roots[i],temporary_replacements_list_final))+"$",imported_placeholders_for_2char[i+1000][:-1]+'cap$'+"$"])
 
 replacements_list_for_standalone_2char_roots=[]
 for i in range(len(standalone_2char_roots)):
     replacements_list_for_standalone_2char_roots.append([" "+standalone_2char_roots[i]+" "," "+safe_replace(standalone_2char_roots[i],temporary_replacements_list_final)+" "," "+imported_placeholders_for_2char[i+2000]+" "])
     replacements_list_for_standalone_2char_roots.append([" "+standalone_2char_roots[i].upper()+" "," "+safe_replace(standalone_2char_roots[i],temporary_replacements_list_final).upper()+" "," "+imported_placeholders_for_2char[i+2000][:-1]+'up$'+" "])
-    replacements_list_for_standalone_2char_roots.append([" "+standalone_2char_roots[i].capitalize()+" "," "+safe_replace(standalone_2char_roots[i],temporary_replacements_list_final).capitalize()+" "," "+imported_placeholders_for_2char[i+2000][:-1]+'cap$'+" "])
+    replacements_list_for_standalone_2char_roots.append([" "+standalone_2char_roots[i].capitalize()+" "," "+capitalize_ruby_and_rt(safe_replace(standalone_2char_roots[i],temporary_replacements_list_final))+" "," "+imported_placeholders_for_2char[i+2000][:-1]+'cap$'+" "])
 
 replacements_list_for_2char=replacements_list_for_standalone_2char_roots+replacements_list_for_suffix_2char_roots+replacements_list_for_prefix_2char_roots
 
