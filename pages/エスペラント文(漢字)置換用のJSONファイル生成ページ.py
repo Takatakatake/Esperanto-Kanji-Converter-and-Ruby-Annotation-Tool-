@@ -241,7 +241,7 @@ elif csv_choice == "デフォルトを使用する":
 st.write("---")
 st.write("## JSONファイルをどうしますか？")
 
-json_choice = st.radio("JSONファイルをどうしますか？", ("アップロードする", "デフォルトを使用する"))
+json_choice = st.radio("エスペラント単語の語根分解法を追加指定するJSONファイルをどうしますか？", ("アップロードする", "デフォルトを使用する"))
 
 json_path_default = "./files_needed_to_get_replacements_list_json_format/世界语单词词根分解法user设置.json"
 
