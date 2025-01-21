@@ -170,7 +170,7 @@ if selected_option == "デフォルトを使用する":
     try:
         with open(default_json_path, 'r', encoding='utf-8') as g:
             combined_data = json.load(g)
-            replacements_final_list = combined_data.get("最终的な替换用のリスト(列表)型配列(replacements_final_list)", None)
+            replacements_final_list = combined_data.get("全域替换用のリスト(列表)型配列(replacements_final_list)", None)
             replacements_list_for_localized_string = combined_data.get("局部文字替换用のリスト(列表)型配列(replacements_list_for_localized_string)", None)
             replacements_list_for_2char = combined_data.get("二文字词根替换用のリスト(列表)型配列(replacements_list_for_2char)", None)
         st.success("デフォルトを使用します。")
@@ -182,7 +182,7 @@ else:
     if uploaded_file is not None:
         try:
             combined_data = json.load(uploaded_file)
-            replacements_final_list = combined_data.get("最终的な替换用のリスト(列表)型配列(replacements_final_list)", None)
+            replacements_final_list = combined_data.get("全域替换用のリスト(列表)型配列(replacements_final_list)", None)
             replacements_list_for_localized_string = combined_data.get("局部文字替换用のリスト(列表)型配列(replacements_list_for_localized_string)", None)
             replacements_list_for_2char = combined_data.get("二文字词根替换用のリスト(列表)型配列(replacements_list_for_2char)", None)
             st.success("JSONファイルのアップロードに成功しました。")
