@@ -205,6 +205,7 @@ with st.form(key='profile_form'):
     if submit_btn:
         text1 = unify_halfwidth_spaces(text0)# 半角スペースと視覚的に区別がつきにくい特殊な空白文字を標準的なASCII半角スペース(U+0020)に置換する。 ただし、全角スペース(U+3000)は置換対象に含めていない。
         text1=replace_esperanto_chars(text1,hat_to_circumflex)
+        text1=replace_esperanto_chars(text1,x_to_circumflex)
 
         replacements_list_for_intact_parts = create_replacements_list_for_intact_parts(text1, placeholders_for_skipping_replacements)
         sorted_replacements_list_for_intact_parts = sorted(replacements_list_for_intact_parts, key=lambda x: len(x[0]), reverse=True)
