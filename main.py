@@ -131,8 +131,8 @@ def create_replacements_list_for_localized_replacement(text, placeholders, repla
             break  # プレースホルダーが足りなくなった場合は終了
     return tmp_replacements_list_for_localized_string
 
-placeholders_for_skipping_replacements = import_placeholders('./files_needed_to_get_replacements_list_json_format/占位符(placeholders)_%1854%-%4934%_文字列替换skip用.txt')
-placeholders_for_localized_replacement = import_placeholders('./files_needed_to_get_replacements_list_json_format/占位符(placeholders)_@5134@-@9728@_局部文字列替换结果捕捉用.txt')
+placeholders_for_skipping_replacements = import_placeholders('./Appの运行に使用する各类文件/占位符(placeholders)_%1854%-%4934%_文字列替换skip用.txt')
+placeholders_for_localized_replacement = import_placeholders('./Appの运行に使用する各类文件/占位符(placeholders)_@5134@-@9728@_局部文字列替换结果捕捉用.txt')
 
 st.title("エスペラント文を漢字置換したり、HTML形式の訳ルビを振ったりする")
 
@@ -166,7 +166,7 @@ replacements_list_for_localized_string = None
 replacements_list_for_2char = None
 
 if selected_option == "デフォルトを使用する":
-    default_json_path = "./files_needed_to_get_replacements_list_json_format/最终的な替换用リスト(列表)(合并3个JSON文件).json"
+    default_json_path = "./Appの运行に使用する各类文件/最终的な替换用リスト(列表)(合并3个JSON文件).json"
     try:
         with open(default_json_path, 'r', encoding='utf-8') as g:
             combined_data = json.load(g)

@@ -20,7 +20,7 @@ import json
 #     return text
 
 # 事前に作成した Unicode_BMP全范围文字幅(宽)_Arial16.json ファイルを読み込み
-with open("./files_needed_to_get_replacements_list_json_format/Unicode_BMP全范围文字幅(宽)_Arial16.json", "r", encoding="utf-8") as fp:
+with open("./Appの运行に使用する各类文件/Unicode_BMP全范围文字幅(宽)_Arial16.json", "r", encoding="utf-8") as fp:
     char_widths_dict = json.load(fp)
 
 def measure_text_width_Arial16(text, char_widths_dict):
@@ -102,7 +102,7 @@ def safe_replace(text, replacements):
 
 
 # サンプルファイルのパス
-file_path0 = './files_needed_to_get_replacements_list_json_format/日本語訳ルビリスト_20250112_字上符形式.csv'
+file_path0 = './Appの运行に使用する各类文件/日本語訳ルビリスト_20250112_字上符形式.csv'
 # ファイルを読み込む
 with open(file_path0, "rb") as file:
     btn = st.download_button(
@@ -112,7 +112,7 @@ with open(file_path0, "rb") as file:
             mime="text/csv"
         )
 # サンプルファイルのパス
-file_path0 = './files_needed_to_get_replacements_list_json_format/エスペラント語根漢字対応リスト.csv'
+file_path0 = './Appの运行に使用する各类文件/エスペラント語根漢字対応リスト.csv'
 # ファイルを読み込む
 with open(file_path0, "rb") as file:
     btn = st.download_button(
@@ -123,7 +123,7 @@ with open(file_path0, "rb") as file:
         )
 
 # サンプルファイルのパス
-json_file_path = './files_needed_to_get_replacements_list_json_format/世界语单词词根分解法user设置.json'
+json_file_path = './Appの运行に使用する各类文件/世界语单词词根分解法user设置.json'
 # JSONファイルを読み込んでダウンロードボタンを生成
 with open(json_file_path, "rb") as file_json:
     btn_json = st.download_button(
@@ -135,7 +135,7 @@ with open(json_file_path, "rb") as file_json:
 
 # サンプルエクセルファイルのダウンロードボタン
 st.write("エスペラント語根に翻訳ルビを追加する難易度をユーザーが設定できるサンプル Excel ファイルです。これを活用して上記のサンプル形式と同様の CSV ファイルを作成してください。")
-with open('./files_needed_to_get_replacements_list_json_format/エスペラント語根日本語訳ルビリスト.xlsx', "rb") as file:
+with open('./Appの运行に使用する各类文件/エスペラント語根日本語訳ルビリスト.xlsx', "rb") as file:
     st.download_button(
         label="サンプルExcelファイルダウンロード: エスペラント語根日本語訳ルビリスト",
         data=file,
@@ -212,7 +212,7 @@ st.write('フォーマット済みテキスト:', formatted_text)
 # --- CSV アップロード or デフォルト使用 ---
 csv_choice = st.radio("CSVファイルをどうしますか？", ("アップロードする", "デフォルトを使用する"))
 
-csv_path_default = "./files_needed_to_get_replacements_list_json_format/日本語訳ルビリスト_20250112_字上符形式.csv" 
+csv_path_default = "./Appの运行に使用する各类文件/日本語訳ルビリスト_20250112_字上符形式.csv" 
     # ↑デフォルトとして使いたいCSVファイルのパス(例)
 
 CSV_data_imported = None  # 後ほど使うために先に宣言
@@ -243,7 +243,7 @@ st.write("## JSONファイルをどうしますか？")
 
 json_choice = st.radio("エスペラント単語の語根分解法を追加指定するJSONファイルをどうしますか？", ("アップロードする", "デフォルトを使用する"))
 
-json_path_default = "./files_needed_to_get_replacements_list_json_format/世界语单词词根分解法user设置.json"
+json_path_default = "./Appの运行に使用する各类文件/世界语单词词根分解法user设置.json"
 
 change_dec = None  # JSON を格納
 
@@ -266,7 +266,7 @@ elif json_choice == "デフォルトを使用する":
         st.stop()
 
 
-with open("./files_needed_to_get_replacements_list_json_format/PEJVO(世界语全部单词列表)'全部'について、词尾(a,i,u,e,o,n等)をcutし、comma(,)で隔てて词性と併せて记录した列表(stem_with_part_of_speech_list).json", "r", encoding="utf-8") as g:
+with open("./Appの运行に使用する各类文件/PEJVO(世界语全部单词列表)'全部'について、词尾(a,i,u,e,o,n等)をcutし、comma(,)で隔てて词性と併せて记录した列表(stem_with_part_of_speech_list).json", "r", encoding="utf-8") as g:
     stem_with_part_of_speech_list = json.load(g)
 
 # 上の作業で抽出した、'PEJVO(世界语全部单词列表)'全部'について、词尾(a,i,u,e,o,n等)をcutし、comma(,)で隔てて词性と併せて记录した列表'(stem_with_part_of_speech_list)を文字列(漢字)置換するための、置換リストを作成していく。
@@ -276,7 +276,7 @@ with open("./files_needed_to_get_replacements_list_json_format/PEJVO(世界语�
 
 # 一旦辞書型を使う。(後で内容(value)を更新するため)
 temporary_replacements_dict={}
-with open("./files_needed_to_get_replacements_list_json_format/世界语全部词根_约11148个_202501.txt", 'r', encoding='utf-8') as file:
+with open("./Appの运行に使用する各类文件/世界语全部词根_约11148个_202501.txt", 'r', encoding='utf-8') as file:
     # "世界语全部词根_约11148个_202501.txt"は"世界语全部单词列表_约44700个(原pejvo.txt)_utf8转换_第二部分以后重点修正_追加2024年版PEJVO更新项目_最终版202501.txt"から"世界语全部词根_约11148个_202501.txt"を抽出したエスペラントの全語根である。
     roots = file.readlines()
     for root in roots:
@@ -303,7 +303,7 @@ temporary_replacements_list_2 = sorted(temporary_replacements_list_1, key=lambda
 # placeholder法とは、既に置換を終えた文字列が後続の置換によって重複して置換されてしまうことを避けるために、その置換を終えた部分に一時的に無関係な文字列(placeholder)を置いておいて、
 # 全ての置換が終わった後に、改めてその'無関係な文字列(placeholder)'から'目的の置換後文字列'に変換していく手法である。
 
-imported_placeholders = import_placeholders('./files_needed_to_get_replacements_list_json_format/占位符(placeholders)_$20987$-$499999$_全域替换用.txt')
+imported_placeholders = import_placeholders('./Appの运行に使用する各类文件/占位符(placeholders)_$20987$-$499999$_全域替换用.txt')
 
 temporary_replacements_list_final=[]
 for kk in range(len(temporary_replacements_list_2)):
@@ -651,7 +651,7 @@ prefix_2char_roots=['al', 'am', 'av', 'bo', 'di', 'du', 'ek', 'el', 'en', 'fi', 
 standalone_2char_roots=['al', 'ci', 'da', 'de', 'di', 'do', 'du', 'el', 'en', 'fi', 'ha', 'he', 'ho', 'ia', 'ie', 'io', 'iu', 'ja', 'je', 'ju','ke', 'la', 'li', 'mi', 'ne', 'ni', 'nu', 'ok', 'ol', 'po', 'se', 'si', 've', 'vi','ŭa','aŭ','ĉe','ĝi','ŝi','ĉu']
 # an,onはなしにする。
 
-imported_placeholders_for_2char = import_placeholders('./files_needed_to_get_replacements_list_json_format/占位符(placeholders)_$13246$-$19834$_二文字词根替换用.txt')# 文字列(漢字)置換時に用いる"placeholder"ファイルを予め読み込んでおく。
+imported_placeholders_for_2char = import_placeholders('./Appの运行に使用する各类文件/占位符(placeholders)_$13246$-$19834$_二文字词根替换用.txt')# 文字列(漢字)置換時に用いる"placeholder"ファイルを予め読み込んでおく。
 
 replacements_list_for_suffix_2char_roots=[]
 for i in range(len(suffix_2char_roots)):
@@ -684,7 +684,7 @@ for _, (E_root, hanzi_or_meaning) in CSV_data_imported.iterrows():
 
 pre_replacements_list_for_localized_string_2 = sorted(pre_replacements_list_for_localized_string_1, key=lambda x: x[2], reverse=True)
 
-imported_placeholders = import_placeholders('./files_needed_to_get_replacements_list_json_format/占位符(placeholders)_@20374@-@97648@_局部文字列替换用.txt')
+imported_placeholders = import_placeholders('./Appの运行に使用する各类文件/占位符(placeholders)_@20374@-@97648@_局部文字列替换用.txt')
 replacements_list_for_localized_string=[]
 for kk in range(len(pre_replacements_list_for_localized_string_2)):
     replacements_list_for_localized_string.append([pre_replacements_list_for_localized_string_2[kk][0],pre_replacements_list_for_localized_string_2[kk][1],imported_placeholders[kk]])
