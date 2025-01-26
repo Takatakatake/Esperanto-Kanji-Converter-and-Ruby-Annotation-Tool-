@@ -122,31 +122,20 @@ git_add_path() {
 }
 
 # 3. git commit
+# 3. git commit
 git_commit() {
-    echo "Choose commit mode:"
-    echo "0) Default commit message: \"UpDaTe\""
-    echo "1) Single-line commit message"
-    echo "2) Use default editor for multi-line message"
-    read -p "Select commit mode [0: \"UpDaTe\", 1: single-line, 2: multi-line] (default: 0): " commit_choice
-
-    # デフォルトを 0 に設定 (Enter キーのみの場合)
+    # まず commit モードを入力 (Enter なら自動的に「1」を選択)
+    read -p "Select commit mode [1: single-line, 2: multi-line] (default: 1): " commit_choice
     if [ -z "$commit_choice" ]; then
-        commit_choice=0
+        commit_choice=1  # デフォルトは 1
     fi
 
     case $commit_choice in
-        0)
-            # デフォルトメッセージでコミット
-            msg="UpDaTe"
-            echo -e "${BLUE}Using default commit message: \"$msg\"${NC}"
-            run_command "git commit -m \"$msg\""
-            ;;
         1)
             # 単一行メッセージ。Enterだけなら "UpDaTe" で自動コミット
-            read -p "Enter commit message (default: \"UpDaTe\"): " msg
+            read -p "Enter commit message (default: UpDaTe): " msg
             if [ -z "$msg" ]; then
                 msg="UpDaTe"
-                echo -e "${BLUE}Using default commit message: \"$msg\"${NC}"
             fi
             run_command "git commit -m \"$msg\""
             ;;
@@ -156,11 +145,10 @@ git_commit() {
             run_command "git commit"
             ;;
         *)
-            echo -e "${RED}Invalid choice for commit message. Skipped.${NC}"
+            echo -e "${RED}Invalid choice for commit message (skipped).${NC}"
             ;;
     esac
 }
-
 
 
 ###############################################################################
