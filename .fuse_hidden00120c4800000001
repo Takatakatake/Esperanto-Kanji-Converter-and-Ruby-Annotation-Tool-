@@ -122,21 +122,16 @@ git_add_path() {
 }
 
 # 3. git commit
-# 3. git commit
 git_commit() {
-    # まず commit モードを入力 (Enter なら自動的に「1」を選択)
-    read -p "Select commit mode [1: single-line, 2: multi-line] (default: 1): " commit_choice
-    if [ -z "$commit_choice" ]; then
-        commit_choice=1  # デフォルトは 1
-    fi
+    echo "Choose commit mode:"
+    echo "1) Single-line commit message"
+    echo "2) Use default editor for multi-line message"
+    read -p "Select (1 or 2): " commit_choice
 
     case $commit_choice in
         1)
-            # 単一行メッセージ。Enterだけなら "UpDaTe" で自動コミット
-            read -p "Enter commit message (default: UpDaTe): " msg
-            if [ -z "$msg" ]; then
-                msg="UpDaTe"
-            fi
+            # 単一行メッセージ
+            read -p "Enter commit message: " msg
             run_command "git commit -m \"$msg\""
             ;;
         2)
@@ -145,11 +140,10 @@ git_commit() {
             run_command "git commit"
             ;;
         *)
-            echo -e "${RED}Invalid choice for commit message (skipped).${NC}"
+            echo -e "${RED}Invalid choice for commit message.${NC}"
             ;;
     esac
 }
-
 
 ###############################################################################
 # メインループセクション
