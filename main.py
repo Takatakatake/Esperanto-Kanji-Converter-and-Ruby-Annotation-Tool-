@@ -35,9 +35,6 @@ from esp_text_replacement_module import (
     parallel_process
 )
 
-# ▼ Windows/Macでの PicklingError回避のため 'spawn' を明示:
-if __name__ == "__main__":
-    multiprocessing.set_start_method('spawn', force=True)
 
 st.title("エスペラント文を漢字置換したり、HTML形式の訳ルビを振ったりする (拡張版)")
 
