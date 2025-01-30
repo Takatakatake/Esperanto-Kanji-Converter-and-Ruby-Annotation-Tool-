@@ -52,7 +52,7 @@ replacements_list_for_localized_string: List[Tuple[str, str, str]] = []
 replacements_list_for_2char: List[Tuple[str, str, str]] = []
 
 if selected_option == "デフォルトを使用する":
-    default_json_path = "./Appの运行に使用する各类文件/最终的な替换用リスト(列表)(合并3个JSON文件).json"
+    default_json_path = "./Appの运行に使用する各类文件/最终的な替换用リスト(列表)(合并3个JSON文件)_2.json"
     try:
         with open(default_json_path, 'r', encoding='utf-8') as f:
             combined_data = json.load(f)
