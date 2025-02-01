@@ -117,7 +117,7 @@ st.write("---")
 
 # 例: 出力形式など。必要に応じて追加カスタマイズ
 format_type = st.selectbox(
-    "出力形式を選択(置換用のJSONファイルを作成したときと同じ形式を選択):",
+    "出力形式を選択(置換用JSONファイルを作成したときと同じ形式を選択):",
     [
         "HTML格式_Ruby文字_大小调整",
         "HTML格式_Ruby文字_大小调整_汉字替换",
@@ -308,23 +308,28 @@ ruby rt {
 # フォーム外の処理: 結果表示・ダウンロード
 # =========================================
 if processed_text:
-    tab1, tab2 = st.tabs([ "HTMLプレビュー", "置換結果（HTML ソース）"])
 
     if "HTML" in format_type:
+        tab1, tab2 = st.tabs([ "HTMLプレビュー", "置換結果（HTML ソースコード）"])
         with tab1:
             # 実際の表示をプレビュー
-            components.html(processed_text, height=500, scrolling=True)   
-    with tab2:
-        st.text_area("置換後のテキスト (HTML)", processed_text, height=300)
+            components.html(processed_text, height=500, scrolling=True)
+        with tab2:
+            st.text_area("", processed_text, height=300)
+        
+    else:
+        tab3_list = st.tabs(["置換結果テキスト"])   
+        with tab3_list[0]:
+            st.text_area("", processed_text, height=300)
 
 
 
 
     download_data = processed_text.encode('utf-8')
     st.download_button(
-        label="ダウンロード (HTML)",
+        label="置換結果のダウンロード",
         data=download_data,
-        file_name="processed_text.html",
+        file_name="置換結果.html",
         mime="text/html"
     )
 
