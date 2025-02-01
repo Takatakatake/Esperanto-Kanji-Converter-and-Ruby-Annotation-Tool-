@@ -9,40 +9,48 @@ import json
 import pandas as pd  # 必要なら使う
 from typing import List, Dict, Tuple, Optional
 import multiprocessing
+import streamlit.components.v1 as components
+
 
 from esp_text_replacement_module import (
     x_to_circumflex,
-    circumflex_to_x,
     x_to_hat,
-    hat_to_x,
     hat_to_circumflex,
     circumflex_to_hat,
 
     replace_esperanto_chars,
-    convert_to_circumflex,
-    unify_halfwidth_spaces,
-    wrap_text_with_ruby,
-    safe_replace,
     import_placeholders,
 
-    find_percent_enclosed_strings_for_skipping_replacement,
-    create_replacements_list_for_intact_parts,
-    find_at_enclosed_strings_for_localized_replacement,
-    create_replacements_list_for_localized_replacement,
-
     orchestrate_comprehensive_esperanto_text_replacement,
-    process_segment,
     parallel_process
 )
 
+# ページ設定
+st.set_page_config(page_title="Esperanto → 漢字変換ツール", layout="wide")
 
 st.title("エスペラント文を漢字置換したり、HTML形式の訳ルビを振ったりする (拡張版)")
+
+# st.title("エスペラント文を漢字置換したり、HTML形式の訳ルビを振ったりする (拡張版)")
+
+st.write("---")
 
 # 1) JSONファイル (置換ルール) をロードする (デフォルト or アップロード)
 selected_option = st.radio(
     "JSONファイルをどうしますか？ (置換用JSONファイルの読み込み)",
     ("デフォルトを使用する", "アップロードする")
 )
+
+with st.expander("**サンプルJSON(置換用JSONファイル)**"):
+    # サンプルファイルのパス
+    json_file_path = './Appの运行に使用する各类文件/最终的な替换用リスト(列表)(合并3个JSON文件).json'
+    # JSONファイルを読み込んでダウンロードボタンを生成
+    with open(json_file_path, "rb") as file_json:
+        btn_json = st.download_button(
+            label="サンプルJSON(置換用JSONファイル)ダウンロード",
+            data=file_json,
+            file_name="置換用JSONファイル.json",
+            mime="application/json"
+        )
 
 replacements_final_list: List[Tuple[str, str, str]] = []
 replacements_list_for_localized_string: List[Tuple[str, str, str]] = []
@@ -90,11 +98,20 @@ placeholders_for_localized_replacement: List[str] = import_placeholders(
     './Appの运行に使用する各类文件/占位符(placeholders)_@5134@-@9728@_局部文字列替换结果捕捉用.txt'
 )
 
+
 # 3) 設定パラメータ (UI) - 高度な設定
-st.subheader("高度な設定 (並列処理)")
-with st.expander("詳細設定を開く"):
-    use_parallel = st.checkbox("並列処理を使う (テキストが多い場合に高速化)", value=False)
-    num_processes = st.number_input("同時プロセス数 (CPUコア数や環境による)", min_value=1, max_value=6, value=4, step=1)
+# st.subheader("高度な設定 (並列処理)")
+# with st.expander("詳細設定を開く"):
+#     use_parallel = st.checkbox("並列処理を使う (テキストが多い場合に高速化)", value=False)
+#     num_processes = st.number_input("同時プロセス数 (CPUコア数や環境による)", min_value=1, max_value=6, value=4, step=1)
+# サイドバーに囲み枠を作る
+
+with st.sidebar:
+    with st.expander("高度な設定", expanded=True):
+        use_parallel = st.checkbox("並列処理を使う", value=False)
+        num_processes = st.number_input("同時プロセス数", min_value=1, max_value=6, value=4)
+
+
 
 st.write("---")
 
@@ -291,7 +308,17 @@ ruby rt {
 # フォーム外の処理: 結果表示・ダウンロード
 # =========================================
 if processed_text:
-    st.text_area("文字列置換後のテキスト(プレビュー)", processed_text, height=300)
+    tab1, tab2 = st.tabs([ "HTMLプレビュー", "置換結果（HTML ソース）"])
+
+    if "HTML" in format_type:
+        with tab1:
+            # 実際の表示をプレビュー
+            components.html(processed_text, height=500, scrolling=True)   
+    with tab2:
+        st.text_area("置換後のテキスト (HTML)", processed_text, height=300)
+
+
+
 
     download_data = processed_text.encode('utf-8')
     st.download_button(
