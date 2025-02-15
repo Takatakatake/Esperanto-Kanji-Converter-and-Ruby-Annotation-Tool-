@@ -15,8 +15,6 @@ esp_replacement_json_make_module.py
 import re
 import json
 import multiprocessing
-from bs4 import BeautifulSoup, NavigableString
-from bs4.element import Tag
 import pandas as pd
 import os
 from typing import List, Dict, Tuple, Optional  # List, Dict, Tuple, (Optional) など型ヒントを一括でインポート

@@ -1,6 +1,4 @@
-# streamlit_app_expanded_fixed.py
-# ------------------------------------
-# メインの Streamlit アプリ (機能拡充版、設定変更しても入力テキストは消えない例)
+# メインの Streamlit アプリ (機能拡充版202502)
 
 import streamlit as st
 import re
@@ -8,8 +6,14 @@ import io
 import json
 import pandas as pd  # 必要なら使う
 from typing import List, Dict, Tuple, Optional
-import multiprocessing
 import streamlit.components.v1 as components
+
+import multiprocessing
+# multiprocessing時のPicklingError回避のため 'spawn' を明示: streamlitでは必ず必要。
+try:
+    multiprocessing.set_start_method("spawn")
+except RuntimeError:
+    pass  # すでに start method が設定済みの場合はここで無視する
 
 
 from esp_text_replacement_module import (
@@ -26,6 +30,34 @@ from esp_text_replacement_module import (
     apply_ruby_html_header_and_footer
 )
 
+## 関数のキャッシュを活用することで、デフォルトの置換用JSONファイル(50MB程度)の読み込みを早くする。(約1.0秒→0.5秒 の短縮)
+@st.cache_data
+def load_replacements_lists(json_path: str) -> Tuple[List, List, List]:
+    """
+    JSONファイルをロードし、以下の3つのリストをタプルとして返す:
+      1) replacements_final_list
+      2) replacements_list_for_localized_string
+      3) replacements_list_for_2char
+    """
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    replacements_final_list = data.get(
+        "全域替换用のリスト(列表)型配列(replacements_final_list)", []
+    )
+    replacements_list_for_localized_string = data.get(
+        "局部文字替换用のリスト(列表)型配列(replacements_list_for_localized_string)", []
+    )
+    replacements_list_for_2char = data.get(
+        "二文字词根替换用のリスト(列表)型配列(replacements_list_for_2char)", []
+    )
+
+    return (
+        replacements_final_list,
+        replacements_list_for_localized_string,
+        replacements_list_for_2char,
+    )
+
 # ページ設定
 st.set_page_config(page_title="Esperanto文の文字列(漢字)置換ツール", layout="wide")
 
@@ -38,6 +70,8 @@ selected_option = st.radio(
     "JSONファイルをどうしますか？ (置換用JSONファイルの読み込み)",
     ("デフォルトを使用する", "アップロードする")
 )
+
+
 
 with st.expander("**サンプルJSON(置換用JSONファイル)**"):
     # サンプルファイルのパス
@@ -58,14 +92,7 @@ replacements_list_for_2char: List[Tuple[str, str, str]] = []
 if selected_option == "デフォルトを使用する":
     default_json_path = "./Appの运行に使用する各类文件/最终的な替换用リスト(列表)(合并3个JSON文件).json"
     try:
-        with open(default_json_path, 'r', encoding='utf-8') as f:
-            combined_data = json.load(f)
-            replacements_final_list = combined_data.get(
-                "全域替换用のリスト(列表)型配列(replacements_final_list)", [])
-            replacements_list_for_localized_string = combined_data.get(
-                "局部文字替换用のリスト(列表)型配列(replacements_list_for_localized_string)", [])
-            replacements_list_for_2char = combined_data.get(
-                "二文字词根替换用のリスト(列表)型配列(replacements_list_for_2char)", [])
+        replacements_final_list, replacements_list_for_localized_string, replacements_list_for_2char = load_replacements_lists(default_json_path)
         st.success("デフォルトJSONの読み込みに成功しました。")
     except Exception as e:
         st.error(f"JSONファイルの読み込みに失敗: {e}")
@@ -97,14 +124,6 @@ placeholders_for_localized_replacement: List[str] = import_placeholders(
     './Appの运行に使用する各类文件/占位符(placeholders)_@5134@-@9728@_局部文字列替换结果捕捉用.txt'
 )
 
-
-# 3) 設定パラメータ (UI) - 高度な設定
-# st.subheader("高度な設定 (並列処理)")
-# with st.expander("詳細設定を開く"):
-#     use_parallel = st.checkbox("並列処理を使う (テキストが多い場合に高速化)", value=False)
-#     num_processes = st.number_input("同時プロセス数 (CPUコア数や環境による)", min_value=1, max_value=6, value=4, step=1)
-# サイドバーに囲み枠を作る
-
 st.write("---")
 
 
@@ -115,7 +134,7 @@ with st.expander("並列処理についての設定を開く"):
             ここでは、文字列(漢字)置換時に使用する並列処理のプロセス数を決めます。  
             """)
     use_parallel = st.checkbox("並列処理を使う", value=False)
-    num_processes = st.number_input("同時プロセス数", min_value=2, max_value=6, value=4, step=1)
+    num_processes = st.number_input("同時プロセス数", min_value=2, max_value=4, value=4, step=1)
 
 
 st.write("---")
@@ -150,41 +169,40 @@ if source_option == "ファイルアップロード":
     else:
         st.warning("テキストファイルがアップロードされていません。手動入力に切り替えるかファイルをアップロードしてください。")
 
-# ------------------------------------------------
-# session_state を使って、ユーザーが再設定時にも
-# 入力したテキストが消えないようにする例 (あえてやるなら)
-# ------------------------------------------------
-if "text0_value" not in st.session_state:
-    st.session_state["text0_value"] = ""
 
-with st.form(key='text_input_form'):
-    # ここでテキストエリアのデフォルト値を session_state から取得
-    if source_option == "手動入力":
-        text0 = st.text_area(
-            "エスペラントの文章を入力してください",
-            height=150,
-            value=st.session_state["text0_value"]
-        )
+with st.form(key='profile_form'):
+    # アップロードの有無で text_area の value を切り替える
+    if uploaded_text:
+        initial_text = uploaded_text
     else:
-        # アップロード済みテキスト
-        if not st.session_state["text0_value"] and uploaded_text:
-            # セッションステートが空なら、アップロードテキストを初期設定
-            st.session_state["text0_value"] = uploaded_text
-        text0 = st.text_area(
-            "エスペラントの文章(ファイル読み込み済み)",
-            value=st.session_state["text0_value"],
-            height=150
-        )
-    st.markdown("""「%」で前後を囲む(「%<50文字以内の文字列>%」形式)と、「%」で囲まれた部分は文字列(漢字)置換せず、元のまま保持することができます。""")
-    st.markdown("""また、「@」で前後を囲む(「@<18文字以内の文字列>@」形式)と、「@」で囲まれた部分を局所的に文字列(漢字)置換します。""")
+        initial_text = st.session_state.get("text0_value", "")
+
+    # テキストエリアの初期値に "initial_text" を使う
+    text0 = st.text_area(
+        "エスペラントの文章を入力してください",
+        height=150,
+        value=initial_text  # <-- 変更部分: セッションステートからの値をデフォルトに
+    )
+
+    st.markdown("""「%」で前後を囲む(「%<50文字以内の文字列>%」形式)と、
+    「%」で囲まれた部分は文字列(漢字)置換せず、元のまま保持することができます。""")
+    st.markdown("""また、「@」で前後を囲む(「@<18文字以内の文字列>@」形式)と、
+    「@」で囲まれた部分を局所的に文字列(漢字)置換します。""")
+
     letter_type = st.radio('出力文字形式', ('上付き文字', 'x 形式', '^形式'))
 
     submit_btn = st.form_submit_button('送信')
-    cancel_btn = st.form_submit_button('キャンセル')
+    cancel_btn = st.form_submit_button("キャンセル")
+
+    # キャンセルが押されたら、ここで処理を打ち切る
+    if cancel_btn:
+        st.warning("キャンセルされました。")
+        st.stop()  # ここで処理が終了するので、下の行は実行されない
 
     if submit_btn:
-        # ユーザーが送信ボタンを押した時点で、text0 の値を session_state に保存
-        st.session_state["text0_value"] = text0
+        # 入力されたテキストをセッションステートに保存
+        st.session_state["text0_value"] = text0  # <-- 変更部分
+    
 
         if use_parallel:
             processed_text = parallel_process(
@@ -222,20 +240,32 @@ with st.form(key='text_input_form'):
 # フォーム外の処理: 結果表示・ダウンロード
 # =========================================
 if processed_text:
+    # -- ここから追加: 巨大テキスト対策ロジック（行数ベース）--
+    MAX_PREVIEW_LINES = 250  # 250行まで表示
+    lines = processed_text.splitlines()  # 改行で分割
+
+    if len(lines) > MAX_PREVIEW_LINES:
+        # たとえば先頭47行 + "..." + 末尾3行の形でプレビューを作る
+        first_part = lines[:247]
+        last_part = lines[-3:]
+        preview_text = "\n".join(first_part) + "\n...\n" + "\n".join(last_part)
+        st.warning(
+            f"テキストが長いため（総行数 {len(lines)} 行）、"
+            "全文プレビューを一部省略しています。末尾3行も表示します。"
+        )
+    else:
+        preview_text = processed_text
 
     if "HTML" in format_type:
-        tab1, tab2 = st.tabs([ "HTMLプレビュー", "置換結果（HTML ソースコード）"])
+        tab1, tab2 = st.tabs(["HTMLプレビュー", "置換結果（HTML ソースコード）"])
         with tab1:
-            # 実際の表示をプレビュー
-            components.html(processed_text, height=500, scrolling=True)
+            components.html(preview_text, height=500, scrolling=True)
         with tab2:
-            st.text_area("", processed_text, height=300)
-        
+            st.text_area("", preview_text, height=300)
     else:
-        tab3_list = st.tabs(["置換結果テキスト"])   
+        tab3_list = st.tabs(["置換結果テキスト"])
         with tab3_list[0]:
-            st.text_area("", processed_text, height=300)
-
+            st.text_area("", preview_text, height=300)
 
     download_data = processed_text.encode('utf-8')
     st.download_button(

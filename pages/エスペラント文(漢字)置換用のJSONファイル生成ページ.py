@@ -11,7 +11,6 @@ from io import StringIO
 import streamlit.components.v1 as components
 
 
-
 # 関数群
 from esp_text_replacement_module import (
     convert_to_circumflex,
@@ -236,7 +235,7 @@ if csv_choice == "アップロードする":
         csv_buffer = StringIO(converted_text)
         
         # 変換後のファイルデータをpandasで読み込む
-        CSV_data_imported = pd.read_csv(csv_buffer, encoding="utf-8")
+        CSV_data_imported = pd.read_csv(csv_buffer, encoding="utf-8", usecols=[0, 1])# , usecols=[0, 1]によって、最初の2列だけを読み込む。　1列しか値が存在しない行について、2列目は自動的に欠損値 (NaN) として扱われ、以下の条件チェックの pd.notna(hanzi_or_meaning) や hanzi_or_meaning != "" に弾かれる。
         
         st.success("CSVファイルがアップロードされました。")
     else:
@@ -256,7 +255,7 @@ elif csv_choice == "デフォルトを使用する":
         csv_buffer = StringIO(converted_text)
         
         # pandas で読み込み
-        CSV_data_imported = pd.read_csv(csv_buffer, encoding="utf-8")
+        CSV_data_imported = pd.read_csv(csv_buffer, encoding="utf-8", usecols=[0, 1])# , usecols=[0, 1]によって、最初の2列だけを読み込む。　1列しか値が存在しない行について、2列目は自動的に欠損値 (NaN) として扱われ、以下の条件チェックの pd.notna(hanzi_or_meaning) や hanzi_or_meaning != "" に弾かれる。
         
         st.info("デフォルトのCSVを使用します。")
     except FileNotFoundError:
@@ -646,6 +645,7 @@ if st.button("置換用JSONファイルを作成する"):
 
         # 外部ファイルを読み込む形式に変えた。行われている処理は全く同じ。
         # ★一番最初だけチェックして、説明用の項目を削除する。
+        # ★一番最初だけチェックして、説明用の項目を削除する
         if len(custom_stemming_setting_list) > 0:
             if len(custom_stemming_setting_list[0]) != 3:
                 # 最初のリストの要素の数が3つでなければ、これを説明用の項目であると判断して削除する。
