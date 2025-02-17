@@ -6,10 +6,15 @@ import re
 import json
 import streamlit as st
 from typing import List, Dict, Tuple, Optional
-import multiprocessing
 from io import StringIO
 import streamlit.components.v1 as components
 
+import multiprocessing
+# multiprocessing時のPicklingError回避のため 'spawn' を明示: streamlitでは必ず必要。
+try:
+    multiprocessing.set_start_method("spawn")
+except RuntimeError:
+    pass  # すでに start method が設定済みの場合はここで無視する
 
 # 関数群
 from esp_text_replacement_module import (
