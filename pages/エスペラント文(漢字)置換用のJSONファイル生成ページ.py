@@ -94,7 +94,7 @@ with st.expander("サンプルファイル一覧(ダウンロード用)"):
             )
 
     st.markdown("""
-    **サンプルCSV２(エスペラント語根-漢字対応リスト　知乎上のエスペランチスト,Mingeo氏による漢字化案)**  
+    **サンプルCSV２(エスペラント語根-漢字対応リスト　知乎上のエスペランチスト,楊氏(Mingeo)による漢字化案)**  
     こちらはエスペラント語根と漢字を対応づけたCSVファイルです。
     """)
     # サンプルファイルのパス
@@ -102,9 +102,9 @@ with st.expander("サンプルファイル一覧(ダウンロード用)"):
     # ファイルを読み込む
     with open(file_path0, "rb") as file:
         btn = st.download_button(
-                label="サンプルCSV２(エスペラント語根-漢字対応リスト＿Mingeo氏)ダウンロード",
+                label="サンプルCSV２(エスペラント語根-漢字対応リスト＿楊氏(Mingeo))ダウンロード",
                 data=file,
-                file_name="エスペラント語根-漢字対応リスト＿Mingeo氏.csv",
+                file_name="エスペラント語根-漢字対応リスト＿楊氏(Mingeo).csv",
                 mime="text/csv"
             )
 
