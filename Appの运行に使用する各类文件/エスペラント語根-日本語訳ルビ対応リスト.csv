@@ -93,7 +93,7 @@ efektiv,現実の
 ordinar,普通の
 akr,鋭い
 fam,名高い
-ies,だれかの
+ies,誰かの
 avar,欲の深い
 dens,濃い
 eben,平らな
@@ -180,7 +180,7 @@ inklin,傾向のある
 kapric,気まぐれの
 modern,現代の
 modest,控え目な
-nenies,誰の~でもない
+nenies,誰のでもない
 normal,正常な
 sovaĝ,野生の
 ekstrem,ぎりぎりの
@@ -280,7 +280,7 @@ arkaik,古風な
 diafan,半透明の
 efemer,はかない
 erotik,性愛の
-fiktiv,fikcia
+fiktiv,架空の
 formal,外形的な
 frivol,軽はずみな
 intens,強烈な
@@ -348,11 +348,11 @@ sed,しかし
 kvankam,(~だ)けれども
 plus,[数]プラス
 minus,マイナス
-ĉe,ところで
+ĉe,(~の)所で
 kun,(~と)共に
 per,よって
 pri,ついて
-pro,ために
+pro,〜ゆえに
 sen,(~)なしで
 sub,(~の)下に
 sur,(~の)上に
@@ -381,10 +381,10 @@ tio ĉi##,これ(もの;こと：一括)
 dis,分散
 mal,正反対
 ĉef,主
-eks,前
+eks,元の
 mis,誤り
 pra,原始
-dev,must
+dev,義務
 dir,(を)言う
 don,与える
 est,(~)である
@@ -500,7 +500,7 @@ kaŝ,(を)隠す
 kovr,(を)おおう
 kuir,(を)料理する
 kuŝ,横たわっている
-paŝ,歩く
+paŝ,一歩
 plor,泣く
 romp,(を)破壊する
 salt,跳躍する
@@ -632,7 +632,7 @@ konfes,(を)告白する
 konsci,(を)意識する
 kultur,(を)栽培する
 mensog,嘘をつく
-rezult,起きる
+rezult,結果
 rikolt,(を)収穫する
 streĉ,(を)緊張させる
 ŝovel,シャベルですくう
@@ -851,7 +851,7 @@ disting,(を)判別する
 eksplod,爆発する
 garanti,(を)保証する
 komplez,親切にする
-kondamn,罪
+kondamn,(を)断罪する
 konfirm,(を)確認する
 konjekt,(を)推測する
 konklud,(を)結論する
@@ -1122,7 +1122,7 @@ konstern,(を)仰天させる
 marĉand,(を)値切る
 kapitulac,[軍]降伏する
 kaŭteriz,[化]腐食させる
-komentari,koment
+komentari,(を)注釈する
 koment,(を)注釈する
 poz,ポーズをとる
 vak,あいている
@@ -1156,7 +1156,7 @@ miaŭ,ニャアと鳴く
 modul,[楽]転調する
 refut,(を)論破する
 rikan,(を)冷笑する
-streb,[に)全力をつくす
+streb,(に)全力をつくす
 svarm,群がっている
 ŝveb,浮かぶ
 absorb,(を)夢中にさせる
@@ -1213,13 +1213,13 @@ aĵ,事物
 ant,能動;継続
 ebl,可能
 iĝ,なる
-ind,価値
+ind,値する
 int,能動;完了
 ism,主義
 ist,従事者
 obl,倍数
 ont,能動;将然
-estr,[接尾辞]長
+estr,長
 aĉ,粗悪
 ĉj##,男子愛称
 end,必要
@@ -1241,7 +1241,7 @@ pli,より
 plu,さらに
 tie,そこで
 tre,たいへん
-tro,見える
+tro,過度に
 tuj,すぐに
 ĉie,いたる所で
 ĵus,たった今
@@ -1254,7 +1254,7 @@ tiom,そんな;あんなに
 ĉiam,いつも
 nenie,どこにも~ない
 ankaŭ,(~も)また
-neniam,決して~ない/td>
+neniam,決して~ない
 baldaŭ,まもなく
 hieraŭ,昨日
 hodiaŭ,今日
@@ -1265,15 +1265,15 @@ ankoraŭ,まだ
 preskaŭ,ほとんど
 tiel ĉi##,この様に(方法;状態)
 oft,たびたび
-ial,ある理由で
+ial,何かの理由で
 iel,どうにかして
 volont,自ら進んで
 des,ますます
 neniom,少しも~ない(数量)
 ĉial,あらゆる理由で
-ĉiom,全部(数量)
+ĉiom,全量
 ia/foj##,ある時
-nenial,どんなわけでも~ない
+nenial,どんな理由もない
 neniel,どうしても~ない
 parker,暗記して
 foj,回
@@ -1623,7 +1623,7 @@ sekret,秘密
 skatol,手箱
 soldat,兵士
 spegul,鏡
-ŝarĝ,積荷
+ŝarĝ,(に)荷を負わす
 ŝrank,戸棚
 tualet,衣装
 ĉapitr,章
@@ -2017,7 +2017,7 @@ posten,部署
 pozici,位置
 proces,[法]訴訟
 profit,利益
-proviz,貯蔵
+proviz,(を)供給する
 pulvor,粉末
 recept,作り方
 rekord,[遊]記録
@@ -2137,7 +2137,7 @@ rim,[詩]韻
 rol,[劇]役割
 ros,露
 sag,矢
-sin,懐
+sin,自身を
 ski,スキー
 sof,ソファー
 tig,[植]茎
@@ -2215,7 +2215,7 @@ oper,[劇]オペラ
 oval,[数]卵形線
 palm,[植]ヤシ
 palt,[服]オーバー
-pane,停止
+pane,故障
 perl,真珠
 pian,[楽]ピアノ
 pice,[植]トウヒ
@@ -2267,7 +2267,7 @@ cikad,[虫]セミ
 cinam,[料]肉桂
 cindr,灰
 cirkl,[数]円
-civit,自治都市
+civit,都市(国家)
 ĉerk,棺
 debet,[商]負債
 diant,カーネーション
@@ -2472,7 +2472,7 @@ bagatel,つまらない事
 bakteri,[生]バクテリア
 bandaĝ,包帯
 bifstek,ビフテキ
-budĝet,buĝeto
+budĝet,予算
 burĝon,芽
 central,中央施設
 cirkvit,[電]回路
@@ -2590,7 +2590,7 @@ ministeri,(政府の)省
 najtingal,[鳥]ナイチンゲール
 ortografi,[文]正書法
 parlament,国会
-proletari,prolet
+proletari,プロレタリア
 propozici,[文]文
 psikologi,心理学
 suplement,補足
@@ -2648,7 +2648,7 @@ muk,[生]粘液
 mul,[動]ラバ
 nap,カブラ
 peg,キツツキ
-pol,ポーランド人
+pol,ポーランド
 pul,[動]ノミ
 rap,カブラ
 rif,[海]岩礁
@@ -2656,7 +2656,7 @@ rod,停泊地
 rot,[軍]中隊
 rub,瓦礫
 rum,ラム酒
-rus,ロシア人
+rus,ロシア
 seb,獣脂
 sel,鞍
 tez,命題
@@ -2673,7 +2673,7 @@ alte,タチアオイ
 alun,ミョウバン
 amel,デンプン糊
 anas,[鳥]アヒル
-angl,イギリス人
+angl,イギリス
 aniz,[果]アニス
 ankr,錨
 arĉ,[楽]弓
@@ -2847,7 +2847,7 @@ femur,[解]大腿
 filik,[植]シダ
 flegm,冷静
 fokus,[理]焦点
-franc,フランス人
+franc,フランス
 frank,[貨]フラン
 fring,[鳥]アトリ
 galon,[服]モール
@@ -2857,7 +2857,7 @@ georg,ゲオルグ
 gitar,[楽]ギター
 gland,[解]腺
 groŝ,グロシェン
-hebre,ヘブライ人
+hebre,ヘブライ
 heder,[植]キヅタ
 herez,[宗]異端
 herni,[病]ヘルニア
@@ -3037,7 +3037,7 @@ furunk,[病]ねぶと
 fusten,[織]ファスチアン
 galeri,回廊
 gamaŝ,[服]ゲートル
-german,ドイツ人
+german,ドイツ
 granat,[果]ザクロ
 granit,[鉱]花コウ岩
 grenad,[軍]リュウ弾
@@ -3045,7 +3045,7 @@ grifel,石筆
 ĝiraf,[動]キリン
 haladz,悪気
 hamstr,[動]ハムスター
-hispan,スペイン人
+hispan,スペイン
 ĥimer,[神]キメラ
 ĥoler,[病]コレラ
 ingven,[解]鼠径
@@ -3541,7 +3541,7 @@ anten,アンテナ
 apati,無感動
 apoge,[天]遠地点
 arkad,[建]アーケード
-arkiv,古文書
+arkiv,記録保管所
 arnik,[植]アルニカ
 atlas,地図帳
 atlet,運動選手
@@ -3732,7 +3732,7 @@ tunik,[服]チュニック
 utopi,ユートピア
 vanel,[鳥]タゲリ
 vinkt,留め金
-viper,vipur
+viper,[動]マムシ
 viski,ウイスキー
 zefir,そよ風
 advent,[宗]降臨節
@@ -3824,7 +3824,7 @@ geolog,地質学者
 gerani,[植]ゼラニウム
 gigant,巨人
 glazur,(陶器の)うわ薬
-glikoz,glukoz
+glikoz,[化]ブドウ糖
 glukoz,[化]ブドウ糖
 gondol,ゴンドラ
 grafit,[鉱]黒鉛
@@ -4197,12 +4197,12 @@ ceremoni,儀式
 dekadenc,衰退
 delegaci,代表団
 demagogi,デマ
-demokrat,民主主義者
+demokrat,民主
 diafragm,[解]横隔膜
 diagonal,[数]対角線
 diapazon,[楽]音叉
 didaktik,教授法
-difterit,difteri
+difterit,[病]ジフテリア
 diktator,独裁者
 disĉipl,弟子
 dispepsi,[病]消化不良
@@ -4278,7 +4278,7 @@ manometr,[理]圧力計
 margarin,[料]マーガリン
 marionet,操り人形
 maŭzole,霊廟(びょう)
-mekanism,メカニズム
+mekanism,機構
 melodram,[劇]メロドラマ
 meridian,[天]子午線
 metronom,[楽]メトロノーム
@@ -4289,7 +4289,7 @@ monogram,[印]モノグラム
 monomani,[病]偏執狂
 naftalin,[化]ナフタリン
 narkotik,[医]麻酔薬
-navigaci,navig/ad
+navigaci,航法
 nekrolog,死亡記事
 nepotism,縁者びいき
 nihilism,ニヒリズム
@@ -4512,7 +4512,7 @@ perspektiv,展望
 plutokrati,金権政治
 pneŭmatik,[機]タイヤ
 prerogativ,(元首の)大権
-pseŭdonim,pseŭdonomo
+pseŭdonim,偽名
 stenografi,速記術
 subjunktiv,[文]接続法
 superlativ,[文]最上級
@@ -4560,7 +4560,7 @@ trigonometri,[数]三角法
 aŭtobiografi,自伝
 t.e.,つまり
 k.t.p.,kaj tiel plu
-kiom,何番目;どれほど
+kiom,いくつ;どれほど
 kiom##,~ほど
 kiom##,どれほど(数量)
 dum,(~する)間
@@ -4591,9 +4591,9 @@ kial,なぜ(理由;原因)
 kial##,なぜ(理由;原因)
 kiel,いかに;のように
 kiel##,いかに(方法;状態)
-tamen,とはいえ;
+tamen,とはいえ
 tamen##,とはいえ
-apenaŭ,するや否や;やっと
+apenaŭ,かろうじて
 apenaŭ##,やっと
 kvazaŭ,まるで(~の)ように
 kvazaŭ##,まるで(~の)ように
@@ -4631,7 +4631,7 @@ kopi,(を)複写する
 kopi##,複写
 fotograf,(を)撮影する
 fotograf##,カメラマン
-ĉar,だから;車
+ĉar,なぜなら
 ĉar##,荷馬車
 fikci##,架空の
 fikci,虚構;架空
@@ -4657,7 +4657,7 @@ ad,継続行為
 ag,行動する
 al,~の方へ
 am,愛する
-an,会員
+an,成員
 ar,集団
 as,現在形
 at,受動継続
@@ -4668,7 +4668,7 @@ da,の
 de,の;から
 di,神
 Di##,神(唯一神)
-do,そこで
+do,それゆえ
 du,二
 ec,性質
 eg,強大
@@ -4726,7 +4726,7 @@ re,再び
 se,もし~なら
 si,自分
 te,茶
-uj,容器
+uj,入れ物
 ul,人
 um,不定意味
 ur,野牛
